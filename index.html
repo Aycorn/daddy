@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dad-Ready NZ | The Calm Anchor</title>
+    <title>daddy.nz | The Calm Anchor</title>
     <meta name="description" content="Daily bite-sized preparation for new dads in Aotearoa. Stay steady with one critical insight every day.">
-    <meta property="og:title" content="Dad-Ready NZ | The Calm Anchor">
+    <meta property="og:title" content="daddy.nz | The Calm Anchor">
     <meta property="og:description" content="Daily bite-sized preparation for new dads in Aotearoa.">
     <meta property="og:image" content="https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&q=80&w=1200">
     <meta name="theme-color" content="#2d5a27">
@@ -14,6 +14,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: { nz: { green: '#2d5a27', sand: '#fdfaf6' } },
@@ -25,13 +26,15 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Outfit', sans-serif; background: #fdfaf6; color: #1a202c; }
+        body { font-family: 'Outfit', sans-serif; }
         .serif { font-family: 'Playfair Display', serif; }
         .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.5); box-shadow: 0 10px 30px rgba(0,0,0,0.02); }
+        .dark .glass { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.05); }
         .reveal { animation: reveal 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
         @keyframes reveal { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .btn-option { transition: all 0.2s ease; }
         .btn-option:hover { transform: translateX(5px); border-color: #2d5a27; background: white; }
+        .dark .btn-option:hover { border-color: #86efac; background: rgba(30, 41, 59, 1); }
 
         /* Ambient Background Animation */
         @keyframes float-slow { 0% { transform: translate(0, 0) scale(1); } 33% { transform: translate(30px, -50px) scale(1.1); } 66% { transform: translate(-20px, 20px) scale(0.9); } 100% { transform: translate(0, 0) scale(1); } }
@@ -39,9 +42,10 @@
         .blob-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: #dcfce7; }
         .blob-2 { bottom: -10%; right: -10%; width: 60vw; height: 60vw; background: #ffedd5; animation-delay: -5s; }
         .blob-3 { top: 40%; left: 30%; width: 40vw; height: 40vw; background: #e0f2fe; animation-delay: -12s; opacity: 0.4; }
+        .dark .blob { opacity: 0.2; }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center p-6">
+<body class="min-h-screen flex flex-col items-center p-6 bg-[#fdfaf6] dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300">
     <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
@@ -51,25 +55,30 @@
     <nav class="w-full max-w-xl flex justify-between items-center mb-12 reveal">
         <div class="flex items-center gap-2">
             <div class="w-10 h-10 bg-green-800 rounded-xl flex items-center justify-center text-white shadow-lg shadow-green-900/20">
-                <i data-lucide="anchor" class="w-6 h-6"></i>
+                <i data-lucide="baby" class="w-6 h-6"></i>
             </div>
             <div>
-                <span class="serif font-bold text-lg block leading-none">Dad-Ready</span>
+                <span class="serif font-bold text-lg block leading-none">daddy.nz</span>
                 <span class="text-[10px] uppercase tracking-widest text-slate-400">Aotearoa NZ</span>
             </div>
         </div>
-        <div class="bg-white px-4 py-2 rounded-full border border-slate-100 shadow-sm flex items-center gap-2">
-            <i data-lucide="flame" class="w-4 h-4 text-orange-500"></i>
-            <span id="streak-count" class="text-sm font-bold">0</span>
+        <div class="flex items-center gap-3">
+            <button onclick="toggleTheme()" class="p-2 rounded-full bg-white/50 dark:bg-slate-800/50 hover:bg-white dark:hover:bg-slate-800 transition text-slate-600 dark:text-slate-300">
+                <i id="theme-icon" data-lucide="moon" class="w-5 h-5"></i>
+            </button>
+            <div class="bg-white dark:bg-slate-800 px-4 py-2 rounded-full border border-slate-100 dark:border-slate-700 shadow-sm flex items-center gap-2">
+                <i data-lucide="flame" class="w-4 h-4 text-orange-500"></i>
+                <span id="streak-count" class="text-sm font-bold">0</span>
+            </div>
         </div>
     </nav>
 
     <main class="w-full max-w-xl">
         <section id="onboarding" class="glass rounded-[2.5rem] p-8 md:p-12 reveal hidden">
             <h2 class="serif text-3xl mb-4">Kia ora, Dad.</h2>
-            <p class="text-slate-600 mb-8 leading-relaxed">Becoming a father is a massive journey. We help you stay steady with one critical insight every day. Tell us when the little one is due.</p>
+            <p class="text-slate-600 dark:text-slate-300 mb-8 leading-relaxed">Becoming a father is a massive journey. We help you stay steady with one critical insight every day. Tell us when the little one is due.</p>
             <label for="due-date" class="block text-xs font-bold uppercase tracking-widest text-slate-500 mb-2">Due Date</label>
-            <input type="date" id="due-date" class="w-full p-4 rounded-xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-green-800 outline-none mb-6">
+            <input type="date" id="due-date" class="w-full p-4 rounded-xl border-none ring-1 ring-slate-200 dark:ring-slate-700 focus:ring-2 focus:ring-green-800 outline-none mb-6 bg-white dark:bg-slate-800 dark:text-white">
             <button onclick="saveOnboarding()" class="w-full bg-green-800 text-white py-4 rounded-xl font-semibold shadow-lg shadow-green-900/20">Start My Daily Ritual</button>
         </section>
 
@@ -77,9 +86,9 @@
             <div id="q-container" class="glass rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden">
                 
                 <div id="q-content">
-                    <span id="q-tag" class="text-[10px] uppercase tracking-widest font-bold bg-slate-100 px-3 py-1 rounded-full text-slate-500 mb-6 inline-block">Topic</span>
-                    <p id="q-context" class="text-slate-500 italic text-sm mb-4 border-l-2 border-green-200 pl-4 leading-relaxed"></p>
-                    <h3 id="q-text" class="text-2xl font-semibold mb-8 text-slate-800 leading-tight"></h3>
+                    <span id="q-tag" class="text-[10px] uppercase tracking-widest font-bold bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-full text-slate-500 dark:text-slate-400 mb-6 inline-block">Topic</span>
+                    <p id="q-context" class="text-slate-500 dark:text-slate-400 italic text-sm mb-4 border-l-2 border-green-200 dark:border-green-900 pl-4 leading-relaxed"></p>
+                    <h3 id="q-text" class="text-2xl font-semibold mb-8 text-slate-800 dark:text-slate-100 leading-tight"></h3>
                     <div id="options-grid" class="space-y-3"></div>
                 </div>
 
@@ -123,7 +132,33 @@
             document.getElementById('streak-count').innerText = state.streak;
         }
 
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            const isDark = document.documentElement.classList.contains('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            updateThemeIcon();
+        }
+
+        function updateThemeIcon() {
+            const isDark = document.documentElement.classList.contains('dark');
+            const icon = document.getElementById('theme-icon');
+            // We need to re-render the icon because Lucide replaces the <i> tag with an <svg>
+            // The simplest way is to reset the innerHTML of the button or just toggle the icon attribute if we hadn't already rendered it.
+            // Since Lucide replaces the element, we can just update the class or re-run createIcons if we change the data attribute, 
+            // but swapping the icon visually is easier by just changing the icon name attribute and re-running lucide.
+            icon.setAttribute('data-lucide', isDark ? 'sun' : 'moon');
+            lucide.createIcons();
+        }
+
         async function init() {
+            // Theme Init
+            const savedTheme = localStorage.getItem('theme');
+            const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (savedTheme === 'dark' || (!savedTheme && systemDark)) {
+                document.documentElement.classList.add('dark');
+            }
+            updateThemeIcon();
+
             if (questions.length === 0) {
                 try {
                     const response = await fetch('questions.json');
@@ -171,10 +206,10 @@
             grid.innerHTML = "";
             q.options.forEach((opt, idx) => {
                 const b = document.createElement('button');
-                b.className = "btn-option w-full text-left p-5 glass rounded-2xl font-medium border border-slate-100 flex justify-between items-center group";
+                b.className = "btn-option w-full text-left p-5 glass rounded-2xl font-medium border border-slate-100 dark:border-slate-700 dark:text-slate-200 flex justify-between items-center group";
                 
                 // Visual check circle for multi-select
-                const checkCircle = isMulti ? `<div id="check-${idx}" class="w-6 h-6 rounded-full border-2 border-slate-300 flex items-center justify-center transition-colors"><i data-lucide="check" class="w-4 h-4 text-white opacity-0"></i></div>` : '';
+                const checkCircle = isMulti ? `<div id="check-${idx}" class="w-6 h-6 rounded-full border-2 border-slate-300 dark:border-slate-600 flex items-center justify-center transition-colors"><i data-lucide="check" class="w-4 h-4 text-white opacity-0"></i></div>` : '';
                 
                 b.innerHTML = `<span>${opt}</span>${checkCircle}`;
                 b.onclick = () => handleOptionClick(q, idx, b);
@@ -232,12 +267,12 @@
                 state.completedIds.push(q.id);
                 const today = new Date().toDateString();
                 if (state.lastPlayed !== today) { state.streak++; state.lastPlayed = today; }
-                banner.className = "p-6 rounded-2xl mb-6 bg-emerald-50 border border-emerald-200 text-emerald-900";
+                banner.className = "p-6 rounded-2xl mb-6 bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 text-emerald-900 dark:text-emerald-100";
                 icon.className = "w-12 h-12 rounded-full flex items-center justify-center bg-emerald-600 text-white shrink-0";
                 icon.innerHTML = '<i data-lucide="check-circle" class="w-6 h-6"></i>';
                 title.innerText = affirmations[Math.floor(Math.random() * affirmations.length)];
             } else {
-                banner.className = "p-6 rounded-2xl mb-6 bg-orange-50 border border-orange-200 text-orange-900";
+                banner.className = "p-6 rounded-2xl mb-6 bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 text-orange-900 dark:text-orange-100";
                 icon.className = "w-12 h-12 rounded-full flex items-center justify-center bg-orange-500 text-white shrink-0";
                 icon.innerHTML = '<i data-lucide="help-circle" class="w-6 h-6"></i>';
                 title.innerText = "A Great Discovery!";
@@ -261,8 +296,8 @@
                     const a = document.createElement('a');
                     a.href = link.url;
                     a.target = "_blank";
-                    a.className = "flex items-center justify-between p-4 bg-white rounded-xl border border-slate-100 hover:bg-slate-50 transition";
-                    a.innerHTML = `<span class="text-sm font-semibold text-slate-700">${link.title}</span><i data-lucide="external-link" class="w-4 h-4 text-slate-400"></i>`;
+                    a.className = "flex items-center justify-between p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 transition";
+                    a.innerHTML = `<span class="text-sm font-semibold text-slate-700 dark:text-slate-200">${link.title}</span><i data-lucide="external-link" class="w-4 h-4 text-slate-400"></i>`;
                     linksContainer.appendChild(a);
                 });
             }
