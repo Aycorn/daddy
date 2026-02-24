@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dad-Ready NZ | The Calm Anchor</title>
+    <meta name="description" content="Daily bite-sized preparation for new dads in Aotearoa. Stay steady with one critical insight every day.">
+    <meta property="og:title" content="Dad-Ready NZ | The Calm Anchor">
+    <meta property="og:description" content="Daily bite-sized preparation for new dads in Aotearoa.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&q=80&w=1200">
+    <meta name="theme-color" content="#2d5a27">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { nz: { green: '#2d5a27', sand: '#fdfaf6' } },
+                    fontFamily: { sans: ['Outfit', 'sans-serif'], serif: ['Playfair Display', 'serif'] }
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Outfit', sans-serif; background: #fdfaf6; color: #1a202c; }
+        .serif { font-family: 'Playfair Display', serif; }
+        .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.5); box-shadow: 0 10px 30px rgba(0,0,0,0.02); }
+        .reveal { animation: reveal 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        @keyframes reveal { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .btn-option { transition: all 0.2s ease; }
+        .btn-option:hover { transform: translateX(5px); border-color: #2d5a27; background: white; }
+
+        /* Ambient Background Animation */
+        @keyframes float-slow { 0% { transform: translate(0, 0) scale(1); } 33% { transform: translate(30px, -50px) scale(1.1); } 66% { transform: translate(-20px, 20px) scale(0.9); } 100% { transform: translate(0, 0) scale(1); } }
+        .blob { position: absolute; filter: blur(80px); opacity: 0.6; animation: float-slow 25s infinite ease-in-out; border-radius: 50%; }
+        .blob-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: #dcfce7; }
+        .blob-2 { bottom: -10%; right: -10%; width: 60vw; height: 60vw; background: #ffedd5; animation-delay: -5s; }
+        .blob-3 { top: 40%; left: 30%; width: 40vw; height: 40vw; background: #e0f2fe; animation-delay: -12s; opacity: 0.4; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center p-6">
+    <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <nav class="w-full max-w-xl flex justify-between items-center mb-12 reveal">
+        <div class="flex items-center gap-2">
+            <div class="w-10 h-10 bg-green-800 rounded-xl flex items-center justify-center text-white shadow-lg shadow-green-900/20">
+                <i data-lucide="anchor" class="w-6 h-6"></i>
+            </div>
+            <div>
+                <span class="serif font-bold text-lg block leading-none">Dad-Ready</span>
+                <span class="text-[10px] uppercase tracking-widest text-slate-400">Aotearoa NZ</span>
+            </div>
+        </div>
+        <div class="bg-white px-4 py-2 rounded-full border border-slate-100 shadow-sm flex items-center gap-2">
+            <i data-lucide="flame" class="w-4 h-4 text-orange-500"></i>
+            <span id="streak-count" class="text-sm font-bold">0</span>
+        </div>
+    </nav>
+
+    <main class="w-full max-w-xl">
+        <section id="onboarding" class="glass rounded-[2.5rem] p-8 md:p-12 reveal hidden">
+            <h2 class="serif text-3xl mb-4">Kia ora, Dad.</h2>
+            <p class="text-slate-600 mb-8 leading-relaxed">Becoming a father is a massive journey. We help you stay steady with one critical insight every day. Tell us when the little one is due.</p>
+            <label for="due-date" class="block text-xs font-bold uppercase tracking-widest text-slate-500 mb-2">Due Date</label>
+            <input type="date" id="due-date" class="w-full p-4 rounded-xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-green-800 outline-none mb-6">
+            <button onclick="saveOnboarding()" class="w-full bg-green-800 text-white py-4 rounded-xl font-semibold shadow-lg shadow-green-900/20">Start My Daily Ritual</button>
+        </section>
+
+        <section id="daily-area" class="reveal hidden">
+            <div id="q-container" class="glass rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden">
+                
+                <div id="q-content">
+                    <span id="q-tag" class="text-[10px] uppercase tracking-widest font-bold bg-slate-100 px-3 py-1 rounded-full text-slate-500 mb-6 inline-block">Topic</span>
+                    <p id="q-context" class="text-slate-500 italic text-sm mb-4 border-l-2 border-green-200 pl-4 leading-relaxed"></p>
+                    <h3 id="q-text" class="text-2xl font-semibold mb-8 text-slate-800 leading-tight"></h3>
+                    <div id="options-grid" class="space-y-3"></div>
+                </div>
+
+                <div id="feedback" class="hidden animate-in fade-in slide-in-from-bottom-4 duration-500">
+                    <div id="feedback-banner" class="p-6 rounded-2xl mb-6">
+                        <div class="flex gap-4">
+                            <div id="feedback-icon" class="w-12 h-12 rounded-full flex items-center justify-center shrink-0"></div>
+                            <div>
+                                <h4 id="feedback-title" class="serif text-xl mb-1"></h4>
+                                <p id="feedback-body" class="text-sm leading-relaxed"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="resource-links" class="space-y-3 mb-8"></div>
+                    <button onclick="init()" class="w-full py-4 rounded-xl bg-slate-900 text-white font-semibold">Try Another Question</button>
+                </div>
+            </div>
+        </section>
+
+        <footer class="mt-12 text-center reveal">
+            <button onclick="resetProgress()" class="text-xs text-slate-400 hover:text-slate-600 underline decoration-slate-300 underline-offset-4 transition">Reset Progress</button>
+        </footer>
+    </main>
+
+    <script>
+        let questions = [];
+        let currentSelection = [];
+        let state = JSON.parse(localStorage.getItem('dadReady_v3')) || { dueDate: null, streak: 0, lastPlayed: null, completedIds: [] };
+        const affirmations = ["Spot on, Dad. You're building a great foundation.", "Nice work! You're becoming a steady anchor.", "Expertly handled. Knowledge is power.", "You've got this. Every bit of prep helps."];
+
+        function saveOnboarding() {
+            const date = document.getElementById('due-date').value;
+            if (!date) return;
+            state.dueDate = date;
+            sync();
+            init();
+        }
+
+        function sync() {
+            localStorage.setItem('dadReady_v3', JSON.stringify(state));
+            document.getElementById('streak-count').innerText = state.streak;
+        }
+
+        async function init() {
+            if (questions.length === 0) {
+                try {
+                    const response = await fetch('questions.json');
+                    questions = await response.json();
+                } catch (e) {
+                    console.error("Failed to load questions", e);
+                }
+            }
+
+            if (!state.dueDate) {
+                document.getElementById('onboarding').classList.remove('hidden');
+            } else {
+                document.getElementById('onboarding').classList.add('hidden');
+                document.getElementById('daily-area').classList.remove('hidden');
+                setupQuestion();
+            }
+            lucide.createIcons();
+        }
+
+        function setupQuestion() {
+            document.getElementById('feedback').classList.add('hidden');
+            document.getElementById('q-content').classList.remove('hidden');
+            
+            const available = questions.filter(q => !state.completedIds.includes(q.id));
+            if (available.length === 0) {
+                document.getElementById('q-text').innerText = "Catalogue Complete!";
+                document.getElementById('q-context').innerText = "You're incredibly prepared, Dad.";
+                document.getElementById('options-grid').innerHTML = '<button onclick="resetProgress()" class="w-full bg-slate-900 text-white py-4 rounded-xl font-semibold">Start Over</button>';
+                return;
+            }
+
+            const q = available[Math.floor(Math.random() * available.length)];
+            document.getElementById('q-tag').innerText = q.cat;
+            document.getElementById('q-context').innerText = q.context;
+            document.getElementById('q-text').innerText = q.text;
+            
+            const isMulti = q.type === 'multi';
+            currentSelection = [];
+            
+            if (isMulti) {
+                document.getElementById('q-context').innerText += " (Select all that apply)";
+            }
+            
+            const grid = document.getElementById('options-grid');
+            grid.innerHTML = "";
+            q.options.forEach((opt, idx) => {
+                const b = document.createElement('button');
+                b.className = "btn-option w-full text-left p-5 glass rounded-2xl font-medium border border-slate-100 flex justify-between items-center group";
+                
+                // Visual check circle for multi-select
+                const checkCircle = isMulti ? `<div id="check-${idx}" class="w-6 h-6 rounded-full border-2 border-slate-300 flex items-center justify-center transition-colors"><i data-lucide="check" class="w-4 h-4 text-white opacity-0"></i></div>` : '';
+                
+                b.innerHTML = `<span>${opt}</span>${checkCircle}`;
+                b.onclick = () => handleOptionClick(q, idx, b);
+                grid.appendChild(b);
+            });
+
+            if (isMulti) {
+                const submitBtn = document.createElement('button');
+                submitBtn.className = "w-full bg-slate-900 text-white py-4 rounded-xl font-semibold mt-4 shadow-lg shadow-slate-900/20";
+                submitBtn.innerText = "Confirm Answer";
+                submitBtn.onclick = () => check(q, currentSelection);
+                grid.appendChild(submitBtn);
+            }
+        }
+
+        function handleOptionClick(q, idx, btn) {
+            if (q.type === 'multi') {
+                const checkEl = btn.querySelector(`#check-${idx}`);
+                const icon = checkEl.querySelector('i');
+                
+                if (currentSelection.includes(idx)) {
+                    currentSelection = currentSelection.filter(i => i !== idx);
+                    btn.classList.remove('ring-2', 'ring-green-800', 'bg-green-50');
+                    checkEl.classList.remove('bg-green-800', 'border-green-800');
+                    icon.classList.add('opacity-0');
+                } else {
+                    currentSelection.push(idx);
+                    btn.classList.add('ring-2', 'ring-green-800', 'bg-green-50');
+                    checkEl.classList.add('bg-green-800', 'border-green-800');
+                    icon.classList.remove('opacity-0');
+                }
+                lucide.createIcons();
+            } else {
+                check(q, [idx]);
+            }
+        }
+
+        function check(q, userIndices) {
+            // Normalize q.correct to array if it's a single number (backward compatibility)
+            const correctIndices = Array.isArray(q.correct) ? q.correct : [q.correct];
+            
+            // Sort and compare arrays
+            const correct = JSON.stringify(userIndices.sort()) === JSON.stringify(correctIndices.sort());
+            
+            document.getElementById('q-content').classList.add('hidden');
+            document.getElementById('feedback').classList.remove('hidden');
+
+            const banner = document.getElementById('feedback-banner');
+            const icon = document.getElementById('feedback-icon');
+            const title = document.getElementById('feedback-title');
+
+            let feedbackText = q.feedback;
+
+            if (correct) {
+                state.completedIds.push(q.id);
+                const today = new Date().toDateString();
+                if (state.lastPlayed !== today) { state.streak++; state.lastPlayed = today; }
+                banner.className = "p-6 rounded-2xl mb-6 bg-emerald-50 border border-emerald-200 text-emerald-900";
+                icon.className = "w-12 h-12 rounded-full flex items-center justify-center bg-emerald-600 text-white shrink-0";
+                icon.innerHTML = '<i data-lucide="check-circle" class="w-6 h-6"></i>';
+                title.innerText = affirmations[Math.floor(Math.random() * affirmations.length)];
+            } else {
+                banner.className = "p-6 rounded-2xl mb-6 bg-orange-50 border border-orange-200 text-orange-900";
+                icon.className = "w-12 h-12 rounded-full flex items-center justify-center bg-orange-500 text-white shrink-0";
+                icon.innerHTML = '<i data-lucide="help-circle" class="w-6 h-6"></i>';
+                title.innerText = "A Great Discovery!";
+
+                // Strip affirmative words from feedback if incorrect
+                const prefixes = ["Correct!", "Nice!", "You've got it.", "Exactly.", "Yes!", "Good eye.", "You're ready!", "Spot on!"];
+                for (const prefix of prefixes) {
+                    if (feedbackText.startsWith(prefix)) {
+                        feedbackText = feedbackText.substring(prefix.length).trim();
+                        break;
+                    }
+                }
+            }
+
+            document.getElementById('feedback-body').innerText = feedbackText;
+            
+            const linksContainer = document.getElementById('resource-links');
+            linksContainer.innerHTML = '';
+            if (q.links && q.links.length > 0) {
+                q.links.forEach(link => {
+                    const a = document.createElement('a');
+                    a.href = link.url;
+                    a.target = "_blank";
+                    a.className = "flex items-center justify-between p-4 bg-white rounded-xl border border-slate-100 hover:bg-slate-50 transition";
+                    a.innerHTML = `<span class="text-sm font-semibold text-slate-700">${link.title}</span><i data-lucide="external-link" class="w-4 h-4 text-slate-400"></i>`;
+                    linksContainer.appendChild(a);
+                });
+            }
+
+            sync();
+            lucide.createIcons();
+        }
+
+        function resetProgress() {
+            if (confirm('Are you sure you want to reset your progress and streak?')) {
+                localStorage.removeItem('dadReady_v3');
+                location.reload();
+            }
+        }
+
+        window.onload = init;
+    </script>
+</body>
+</html>

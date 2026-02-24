@@ -1,0 +1,123 @@
+[
+    {
+        "id": 1,
+        "cat": "Pre-Birth",
+        "context": "In NZ, the maternity system is 'Midwife-led.' This person is your primary professional throughout the journey.",
+        "text": "Who is the primary professional responsible for overseeing your partner's maternity care?",
+        "options": ["The GP (General Practitioner)", "The LMC (Lead Maternity Carer)", "The Hospital Registrar", "The Plunket Nurse"],
+        "correct": [1],
+        "feedback": "Correct! Your LMC (usually a midwife) is your 'home base' for everything.",
+        "links": [
+            { "title": "Find Your Midwife NZ", "url": "https://www.findyourmidwife.co.nz/" }
+        ]
+    },
+    {
+        "id": 2,
+        "cat": "Pre-Birth",
+        "context": "NZ law recognizes that partners need time off to support the pregnancy journey.",
+        "text": "How much unpaid 'Special Leave' are you legally entitled to for pregnancy-related appointments?",
+        "options": ["None - it is at employer discretion", "Up to 10 days", "Up to 4 weeks", "Unlimited (within reason)"],
+        "correct": [1],
+        "feedback": "Nice! Under the Parental Leave Act, you get up to 10 days unpaid leave for scans and classes.",
+        "links": [
+            { "title": "Employment NZ: Parental Leave", "url": "https://www.employment.govt.nz" }
+        ]
+    },
+    {
+        "id": 3,
+        "cat": "Pre-Birth",
+        "context": "Safety in sleep is paramount in Aotearoa. The PEPE acronym helps us remember the basics.",
+        "text": "Which of the following is the correct meaning for the 'E' in the PEPE safe sleep acronym?",
+        "options": ["Ensure warm bedding", "Elevate the head", "Eliminate smoking in the home", "Every sleep in a cot"],
+        "correct": [2],
+        "feedback": "You've got it. Keeping the environment smoke-free is a pillar of safe sleep in NZ.",
+        "links": [
+            { "title": "Plunket: Safe Sleep", "url": "https://www.plunket.org.nz" }
+        ]
+    },
+    {
+        "id": 4,
+        "cat": "Pre-Birth",
+        "context": "Government-funded parental leave payments help ease the financial transition to fatherhood.",
+        "text": "Who administers the government-funded Paid Parental Leave payments?",
+        "options": ["Your Employer", "Inland Revenue (IRD)", "Work and Income (WINZ)", "Ministry of Health"],
+        "correct": [1],
+        "feedback": "Exactly. The IRD manages the payments, while your boss manages the leave time.",
+        "links": [
+            { "title": "IRD: Paid Parental Leave", "url": "https://www.ird.govt.nz" }
+        ]
+    },
+    {
+        "id": 6,
+        "cat": "Pre-Birth",
+        "context": "Fetal movements are a key sign of baby's wellbeing in the third trimester.",
+        "text": "If you notice a decrease or change in fetal movements, what is the correct action?",
+        "options": ["Wait 24 hours to see if they return", "Drink cold water and lie down for 2 hours", "Call your LMC or hospital immediately", "Use a home doppler to check the heartbeat"],
+        "correct": [2],
+        "feedback": "Yes! Never wait, and do not rely on home dopplers (they can give false reassurance). Midwives want to hear from you 24/7.",
+        "links": [
+            { "title": "Te Whatu Ora: Movements", "url": "https://www.tewhatuora.govt.nz" }
+        ]
+    },
+    {
+        "id": 11,
+        "cat": "Active Labor",
+        "context": "When labor begins, the color of the waters breaking tells a story about the baby's wellbeing.",
+        "text": "If the waters break and the fluid is green or brown (meconium), what should you do?",
+        "options": ["Wait for contractions to start", "Call your LMC immediately", "Proceed to hospital at normal speed", "Have a shower and get ready"],
+        "correct": [1],
+        "feedback": "Good eye. Meconium suggests baby might be stressed; call the LMC now.",
+        "links": [
+            { "title": "Healthify NZ", "url": "https://healthify.nz" }
+        ]
+    },
+    {
+        "id": 12,
+        "cat": "Active Labor",
+        "context": "Timing contractions helps you know when active labor has begun.",
+        "text": "The '4-1-1' rule often indicates active labor. What does it stand for?",
+        "options": ["4 contractions in 1 hour, 1 cm dilated", "4 minutes apart, 1 minute long, for 1 hour", "4 hours of labor, 1 minute apart, 1 baby", "4 cm dilated, 1 hour apart, 1 minute long"],
+        "correct": [1],
+        "feedback": "You're ready! This usually means active labor has truly begun.",
+        "links": [
+            { "title": "Te Whatu Ora: Labour Signs", "url": "https://www.tewhatuora.govt.nz" }
+        ]
+    },
+    {
+        "id": 13,
+        "cat": "Active Labor",
+        "type": "multi",
+        "context": "The 'Golden Hour' is the first 60 minutes after birth.",
+        "text": "Select ALL recommended priorities during the 'Golden Hour' (first hour after birth).",
+        "options": ["Uninterrupted skin-to-skin contact", "Weighing and measuring the baby", "Initiating the first feed", "Bathing the baby"],
+        "correct": [0, 2],
+        "feedback": "Spot on. Weighing and bathing can wait. Skin-to-skin and feeding are the priority for bonding and temperature regulation.",
+        "links": [
+            { "title": "Baby Friendly Aotearoa", "url": "https://www.babyfriendly.org.nz/" }
+        ]
+    },
+    {
+        "id": 21,
+        "cat": "First Week",
+        "context": "Heavy wet nappies are the best sign of a well-hydrated baby.",
+        "text": "By Day 4, what is a key indicator that baby is getting enough milk?",
+        "options": ["Sleeping through the night", "6 or more heavy wet nappies in 24h", "Baby stops crying immediately", "3 to 4 wet nappies in 24h"],
+        "correct": [1],
+        "feedback": "Spot on! 6+ heavy wet nappies mean baby is getting enough milk.",
+        "links": [
+            { "title": "Plunket: Nappies", "url": "https://www.plunket.org.nz" }
+        ]
+    },
+    {
+        "id": 22,
+        "cat": "First Week",
+        "context": "Hormonal shifts often lead to a period of high emotion for new mums.",
+        "text": "What is the common term for the emotional tearfulness often occurring around Day 3-5?",
+        "options": ["Postnatal Depression", "The 'Baby Blues'", "Sleep Deprivation Syndrome", "Oxytocin Withdrawal"],
+        "correct": [1],
+        "feedback": "Correct. The 'Baby Blues' are normal. Be the anchor—bring water and kindness.",
+        "links": [
+            { "title": "PADA: Perinatal Anxiety & Depression", "url": "https://pada.nz/" }
+        ]
+    }
+]
